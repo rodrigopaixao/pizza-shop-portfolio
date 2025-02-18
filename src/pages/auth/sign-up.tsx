@@ -1,9 +1,11 @@
+import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { registerRestaurant } from '@/api/register-restaurant'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -25,18 +27,22 @@ export function SignUp() {
   } = useForm<SignUpForm>()
 
   const navigate = useNavigate()
+  const { mutateAsync: registerRestaurantFn } = useMutation({
+    mutationFn: registerRestaurant,
+  })
 
   async function handleSignUp(formData: SignUpForm) {
-    await new Promise((resolve) => {
-      setTimeout(resolve, 2000)
+    registerRestaurantFn({
+      email: formData.email,
+      restaurantName: formData.restaurantName,
+      managerName: formData.managerName,
+      phone: formData.phone,
     })
-
-    console.log(formData)
 
     toast.success('Restaurant signup successfully.', {
       action: {
         label: 'Sign In',
-        onClick: () => navigate('/sign-in'),
+        onClick: () => navigate(`/sign-in?email=${formData.email}`),
       },
     })
   }
