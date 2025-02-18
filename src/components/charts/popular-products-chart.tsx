@@ -2,12 +2,7 @@ import { BarChart } from 'lucide-react'
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 import colors from 'tailwindcss/colors'
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card.tsx'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const data = [
   { productName: 'Pepperoni', amount: 40 },

@@ -1,11 +1,6 @@
 import { Utensils } from 'lucide-react'
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card.tsx'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export function MonthOrderAmountCard() {
   return (

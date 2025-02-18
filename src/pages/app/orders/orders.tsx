@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 
-import { Pagination } from '@/components/pagination.tsx'
+import { Pagination } from '@/components/pagination'
 import {
   Table,
   TableBody,

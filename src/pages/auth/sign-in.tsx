@@ -4,9 +4,9 @@ import { Link } from 'react-router'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-import { Button } from '@/components/ui/button.tsx'
-import { Input } from '@/components/ui/input.tsx'
-import { Label } from '@/components/ui/label.tsx'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -22,12 +22,6 @@ export function SignIn() {
   } = useForm<SignInForm>()
 
   async function handleSignIn(formData: SignInForm) {
-    await new Promise((resolve) => {
-      setTimeout(resolve, 2000)
-    })
-
-    console.log(formData)
-
     toast.success('Authentication email was successfully sent', {
       action: {
         label: 'Reenviar',
