@@ -9,8 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table.tsx'
-import { OrderTableFilters } from '@/pages/app/orders/order-table-filters.tsx'
-import { OrderTableRow } from '@/pages/app/orders/order-table-row.tsx'
+import { OrderTableFilters } from '@/pages/app/orders/_components/order-table-filters.tsx'
+import { OrderTableRow } from '@/pages/app/orders/_components/order-table-row.tsx'
 
 export function Orders() {
   return (

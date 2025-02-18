@@ -3,7 +3,7 @@ import { ArrowRight, Search, X } from 'lucide-react'
 import { Button } from '@/components/ui/button.tsx'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog.tsx'
 import { TableCell, TableRow } from '@/components/ui/table.tsx'
-import { OrderDetails } from '@/pages/app/orders/order-details.tsx'
+import { OrderDetails } from '@/pages/app/orders/_components/order-details.tsx'
 
 export function OrderTableRow() {
   return (

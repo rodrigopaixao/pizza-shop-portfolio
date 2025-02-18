@@ -2,10 +2,10 @@ import { Helmet } from 'react-helmet-async'
 
 import { PopularProductsChart } from '@/components/charts/popular-products-chart.tsx'
 import { RevenueChart } from '@/components/charts/revenue-chart.tsx'
-import { DayOrderAmountCard } from '@/pages/app/dashboard/day-order-amount-card.tsx'
-import { MonthCanceledOrdersAmountCard } from '@/pages/app/dashboard/month-canceled-orders-amount-card.tsx'
-import { MonthOrderAmountCard } from '@/pages/app/dashboard/month-order-amount-card.tsx'
-import { MonthRevenueCard } from '@/pages/app/dashboard/month-revenue-card.tsx'
+import { DayOrderAmountCard } from '@/pages/app/dashboard/_components/day-order-amount-card.tsx'
+import { MonthCanceledOrdersAmountCard } from '@/pages/app/dashboard/_components/month-canceled-orders-amount-card.tsx'
+import { MonthOrderAmountCard } from '@/pages/app/dashboard/_components/month-order-amount-card.tsx'
+import { MonthRevenueCard } from '@/pages/app/dashboard/_components/month-revenue-card.tsx'
 
 export function Dashboard() {
   return (
