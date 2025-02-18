@@ -32,19 +32,25 @@ export function SignUp() {
   })
 
   async function handleSignUp(formData: SignUpForm) {
-    registerRestaurantFn({
-      email: formData.email,
-      restaurantName: formData.restaurantName,
-      managerName: formData.managerName,
-      phone: formData.phone,
-    })
+    try {
+      console.log(formData)
 
-    toast.success('Restaurant signup successfully.', {
-      action: {
-        label: 'Sign In',
-        onClick: () => navigate(`/sign-in?email=${formData.email}`),
-      },
-    })
+      await registerRestaurantFn({
+        email: formData.email,
+        restaurantName: formData.restaurantName,
+        managerName: formData.managerName,
+        phone: formData.phone,
+      })
+
+      toast.success('Restaurant signup successfully.', {
+        action: {
+          label: 'Sign In',
+          onClick: () => navigate(`/sign-in?email=${formData.email}`),
+        },
+      })
+    } catch (error) {
+      toast.error('Error signing up')
+    }
   }
 
   return (
@@ -89,10 +95,10 @@ export function SignUp() {
             <div className="space-y-2">
               <Label htmlFor="mobile">Mobile</Label>
               <Input
-                id="mobile"
+                id="phone"
                 type="tel"
                 placeholder="Enter mobile number"
-                {...register('email')}
+                {...register('phone')}
               />
             </div>
 
