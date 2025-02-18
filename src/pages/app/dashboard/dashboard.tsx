@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 
+import { RevenueChart } from '@/components/revenue-chart.tsx'
 import { DayOrderAmountCard } from '@/pages/app/dashboard/day-order-amount-card.tsx'
 import { MonthCanceledOrdersAmountCard } from '@/pages/app/dashboard/month-canceled-orders-amount-card.tsx'
 import { MonthOrderAmountCard } from '@/pages/app/dashboard/month-order-amount-card.tsx'
@@ -18,6 +19,10 @@ export function Dashboard() {
         <MonthOrderAmountCard />
         <DayOrderAmountCard />
         <MonthCanceledOrdersAmountCard />
+      </div>
+
+      <div className="grid grid-cols-9 gap-4">
+        <RevenueChart />
       </div>
     </>
   )
