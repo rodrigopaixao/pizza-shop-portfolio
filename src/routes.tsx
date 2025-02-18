@@ -4,6 +4,7 @@ import { AppLayout } from '@/pages/_layouts/app-layout.tsx'
 import { AuthLayout } from '@/pages/_layouts/auth-layout.tsx'
 import { DashboardPage } from '@/pages/app/dashboard.tsx'
 import { SignIn } from '@/pages/auth/sign-in.tsx'
+import { SignUp } from '@/pages/auth/sign-up.tsx'
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: '/sign-in',
         element: <SignIn />,
+      },
+      {
+        path: '/sign-up',
+        element: <SignUp />,
       },
     ],
   },
