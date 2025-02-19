@@ -49,22 +49,38 @@ export function StoreProfileDialog() {
     },
   })
 
+  function updateRestaurantCache({ name, description }: StoreProfileSchema) {
+    const cached = queryClient.getQueryData<GetManagedRestaurantResponse>([
+      'managedRestaurant',
+    ])
+
+    if (cached) {
+      queryClient.setQueryData<GetManagedRestaurantResponse>(
+        ['managedRestaurant'],
+        {
+          ...cached,
+          name,
+          description,
+        },
+      )
+    }
+
+    return { cached }
+  }
+
   const { mutateAsync: updateProfileFn } = useMutation({
     mutationFn: updateProfile,
-    onSuccess: (_, { name, description }) => {
-      const cached = queryClient.getQueryData<GetManagedRestaurantResponse>([
-        'managedRestaurant',
-      ])
+    onMutate: ({ name, description }) => {
+      const { cached } = updateRestaurantCache({
+        name,
+        description,
+      })
 
-      if (cached) {
-        queryClient.setQueryData<GetManagedRestaurantResponse>(
-          ['managedRestaurant'],
-          {
-            ...cached,
-            name,
-            description,
-          },
-        )
+      return { previousProfile: cached }
+    },
+    onError: (_, __, context) => {
+      if (context?.previousProfile) {
+        updateRestaurantCache(context.previousProfile)
       }
     },
   })
