@@ -26,29 +26,33 @@ export function OrderTableRow({ order }: OrderTableRowParams) {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const queryClient = useQueryClient();
 
+  function updateOrderStatusOnCache(orderId: string, orderStatus: OrderStatus) {
+    const ordersListCached = queryClient.getQueriesData<GetOrderResponse>({
+      queryKey: ["orders"]
+    });
+
+    ordersListCached.forEach(([cacheKey, cacheData]) => {
+      if (!cacheData) {
+        return;
+      }
+
+      queryClient.setQueryData<GetOrderResponse>(cacheKey, {
+        ...cacheData,
+        orders: cacheData.orders.map(order => {
+          if (order.orderId === orderId) {
+            return { ...order, status: orderStatus };
+          }
+
+          return order;
+        })
+      });
+    });
+  }
+
   const { mutateAsync: cancelOrderFn } = useMutation({
     mutationFn: cancelOrder,
     async onSuccess(_, { orderId }) {
-      const ordersListCached = queryClient.getQueriesData<GetOrderResponse>({
-        queryKey: ["orders"]
-      });
-
-      ordersListCached.forEach(([cacheKey, cacheData]) => {
-        if (!cacheData) {
-          return;
-        }
-
-        queryClient.setQueryData<GetOrderResponse>(cacheKey, {
-          ...cacheData,
-          orders: cacheData.orders.map(order => {
-            if (order.orderId === orderId) {
-              return { ...order, status: "canceled" };
-            }
-
-            return order;
-          })
-        });
-      });
+      updateOrderStatusOnCache(orderId, "canceled");
     }
   });
 
