@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card.tsx'
+import { MetricCardSkeleton } from '@/pages/app/dashboard/_components/metric-card-skeleton'
 
 export function DayOrderAmountCard() {
   const { data: dayOrdersAmount } = useQuery({
@@ -25,7 +26,7 @@ export function DayOrderAmountCard() {
       </CardHeader>
 
       <CardContent className="space-y-1">
-        {dayOrdersAmount && (
+        {dayOrdersAmount ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
               {dayOrdersAmount.amount.toLocaleString('pt-BR')}
@@ -44,6 +45,8 @@ export function DayOrderAmountCard() {
               comparing to yesterday
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>
